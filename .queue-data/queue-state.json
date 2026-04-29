@@ -1,0 +1,294 @@
+{
+  "tasks": {
+    "send-email-1": {
+      "id": "send-email-1",
+      "type": "sendEmail",
+      "payload": {
+        "to": "user@example.com",
+        "subject": "Welcome!"
+      },
+      "maxRetries": 3,
+      "timeoutMs": 2000,
+      "state": "succeeded",
+      "retryCount": 1,
+      "nextRetryAt": null,
+      "createdAt": 1777483483882,
+      "startedAt": 1777483493132,
+      "completedAt": 1777483493783,
+      "assignedWorker": "worker-1",
+      "error": "Worker crash",
+      "history": [
+        {
+          "timestamp": 1777483483882,
+          "state": "queued"
+        },
+        {
+          "timestamp": 1777483492572,
+          "state": "running",
+          "workerId": "worker-1"
+        },
+        {
+          "timestamp": 1777483492572,
+          "state": "retrying",
+          "error": "Worker crash"
+        },
+        {
+          "timestamp": 1777483493132,
+          "state": "running",
+          "workerId": "worker-1"
+        },
+        {
+          "timestamp": 1777483493783,
+          "state": "succeeded"
+        }
+      ]
+    },
+    "send-email-2": {
+      "id": "send-email-2",
+      "type": "sendEmail",
+      "payload": {
+        "to": "admin@example.com",
+        "subject": "Report"
+      },
+      "maxRetries": 2,
+      "timeoutMs": 1500,
+      "state": "succeeded",
+      "retryCount": 0,
+      "nextRetryAt": null,
+      "createdAt": 1777483483885,
+      "startedAt": 1777483492583,
+      "completedAt": 1777483492830,
+      "assignedWorker": "worker-2",
+      "error": null,
+      "history": [
+        {
+          "timestamp": 1777483483885,
+          "state": "queued"
+        },
+        {
+          "timestamp": 1777483492583,
+          "state": "running",
+          "workerId": "worker-2"
+        },
+        {
+          "timestamp": 1777483492830,
+          "state": "succeeded"
+        }
+      ]
+    },
+    "process-image-1": {
+      "id": "process-image-1",
+      "type": "processImage",
+      "payload": {
+        "url": "https://example.com/photo.jpg",
+        "resize": "800x600"
+      },
+      "maxRetries": 1,
+      "timeoutMs": 5000,
+      "state": "succeeded",
+      "retryCount": 0,
+      "nextRetryAt": null,
+      "createdAt": 1777483483886,
+      "startedAt": 1777483492595,
+      "completedAt": 1777483492730,
+      "assignedWorker": "worker-3",
+      "error": null,
+      "history": [
+        {
+          "timestamp": 1777483483886,
+          "state": "queued"
+        },
+        {
+          "timestamp": 1777483492595,
+          "state": "running",
+          "workerId": "worker-3"
+        },
+        {
+          "timestamp": 1777483492730,
+          "state": "succeeded"
+        }
+      ]
+    },
+    "generate-report-1": {
+      "id": "generate-report-1",
+      "type": "generateReport",
+      "payload": {
+        "reportType": "monthly",
+        "month": "2024-01"
+      },
+      "maxRetries": 3,
+      "timeoutMs": 10000,
+      "state": "succeeded",
+      "retryCount": 0,
+      "nextRetryAt": null,
+      "createdAt": 1777483483886,
+      "startedAt": 1777483492606,
+      "completedAt": 1777483492786,
+      "assignedWorker": "worker-4",
+      "error": null,
+      "history": [
+        {
+          "timestamp": 1777483483886,
+          "state": "queued"
+        },
+        {
+          "timestamp": 1777483492606,
+          "state": "running",
+          "workerId": "worker-4"
+        },
+        {
+          "timestamp": 1777483492786,
+          "state": "succeeded"
+        }
+      ]
+    },
+    "sync-data-1": {
+      "id": "sync-data-1",
+      "type": "syncData",
+      "payload": {
+        "source": "crm",
+        "target": "warehouse"
+      },
+      "maxRetries": 5,
+      "timeoutMs": 3000,
+      "state": "succeeded",
+      "retryCount": 0,
+      "nextRetryAt": null,
+      "createdAt": 1777483483887,
+      "startedAt": 1777483492772,
+      "completedAt": 1777483492972,
+      "assignedWorker": "worker-3",
+      "error": null,
+      "history": [
+        {
+          "timestamp": 1777483483887,
+          "state": "queued"
+        },
+        {
+          "timestamp": 1777483492772,
+          "state": "running",
+          "workerId": "worker-3"
+        },
+        {
+          "timestamp": 1777483492972,
+          "state": "succeeded"
+        }
+      ]
+    },
+    "send-notification-1": {
+      "id": "send-notification-1",
+      "type": "sendNotification",
+      "payload": {
+        "userId": "u123",
+        "message": "Your order shipped"
+      },
+      "maxRetries": 2,
+      "timeoutMs": 1000,
+      "state": "succeeded",
+      "retryCount": 0,
+      "nextRetryAt": null,
+      "createdAt": 1777483483887,
+      "startedAt": 1777483492789,
+      "completedAt": 1777483492939,
+      "assignedWorker": "worker-1",
+      "error": null,
+      "history": [
+        {
+          "timestamp": 1777483483887,
+          "state": "queued"
+        },
+        {
+          "timestamp": 1777483492789,
+          "state": "running",
+          "workerId": "worker-1"
+        },
+        {
+          "timestamp": 1777483492939,
+          "state": "succeeded"
+        }
+      ]
+    },
+    "cleanup-temp-1": {
+      "id": "cleanup-temp-1",
+      "type": "cleanupTemp",
+      "payload": {
+        "directory": "/tmp/uploads",
+        "olderThanDays": 7
+      },
+      "maxRetries": 1,
+      "timeoutMs": 4000,
+      "state": "queued",
+      "retryCount": 0,
+      "nextRetryAt": null,
+      "createdAt": 1777483483888,
+      "startedAt": null,
+      "completedAt": null,
+      "assignedWorker": null,
+      "error": null,
+      "history": [
+        {
+          "timestamp": 1777483483888,
+          "state": "queued"
+        },
+        {
+          "timestamp": 1777483492801,
+          "state": "running",
+          "workerId": "worker-4"
+        },
+        {
+          "timestamp": 1777483492863,
+          "state": "retrying",
+          "error": "Simulated task execution error"
+        },
+        {
+          "timestamp": 1777483493405,
+          "state": "running",
+          "workerId": "worker-2"
+        },
+        {
+          "timestamp": 1777483493638,
+          "state": "dead-lettered",
+          "error": "Simulated task execution error"
+        },
+        {
+          "timestamp": 1777483501165,
+          "state": "queued"
+        }
+      ]
+    },
+    "webhook-delivery-1": {
+      "id": "webhook-delivery-1",
+      "type": "webhookDelivery",
+      "payload": {
+        "url": "https://hooks.example.com/abc",
+        "event": "order.created"
+      },
+      "maxRetries": 4,
+      "timeoutMs": 2000,
+      "state": "succeeded",
+      "retryCount": 0,
+      "nextRetryAt": null,
+      "createdAt": 1777483483888,
+      "startedAt": 1777483492865,
+      "completedAt": 1777483493368,
+      "assignedWorker": "worker-2",
+      "error": null,
+      "history": [
+        {
+          "timestamp": 1777483483888,
+          "state": "queued"
+        },
+        {
+          "timestamp": 1777483492865,
+          "state": "running",
+          "workerId": "worker-2"
+        },
+        {
+          "timestamp": 1777483493368,
+          "state": "succeeded"
+        }
+      ]
+    }
+  },
+  "deadLetterQueue": []
+}

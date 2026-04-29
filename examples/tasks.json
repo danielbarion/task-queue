@@ -1,0 +1,58 @@
+[
+  {
+    "id": "send-email-1",
+    "type": "sendEmail",
+    "payload": { "to": "user@example.com", "subject": "Welcome!" },
+    "maxRetries": 3,
+    "timeoutMs": 2000
+  },
+  {
+    "id": "send-email-2",
+    "type": "sendEmail",
+    "payload": { "to": "admin@example.com", "subject": "Report" },
+    "maxRetries": 2,
+    "timeoutMs": 1500
+  },
+  {
+    "id": "process-image-1",
+    "type": "processImage",
+    "payload": { "url": "https://example.com/photo.jpg", "resize": "800x600" },
+    "maxRetries": 1,
+    "timeoutMs": 5000
+  },
+  {
+    "id": "generate-report-1",
+    "type": "generateReport",
+    "payload": { "reportType": "monthly", "month": "2024-01" },
+    "maxRetries": 3,
+    "timeoutMs": 10000
+  },
+  {
+    "id": "sync-data-1",
+    "type": "syncData",
+    "payload": { "source": "crm", "target": "warehouse" },
+    "maxRetries": 5,
+    "timeoutMs": 3000
+  },
+  {
+    "id": "send-notification-1",
+    "type": "sendNotification",
+    "payload": { "userId": "u123", "message": "Your order shipped" },
+    "maxRetries": 2,
+    "timeoutMs": 1000
+  },
+  {
+    "id": "cleanup-temp-1",
+    "type": "cleanupTemp",
+    "payload": { "directory": "/tmp/uploads", "olderThanDays": 7 },
+    "maxRetries": 1,
+    "timeoutMs": 4000
+  },
+  {
+    "id": "webhook-delivery-1",
+    "type": "webhookDelivery",
+    "payload": { "url": "https://hooks.example.com/abc", "event": "order.created" },
+    "maxRetries": 4,
+    "timeoutMs": 2000
+  }
+]
