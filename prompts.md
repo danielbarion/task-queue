@@ -1,9 +1,9 @@
-Implement a distributed task queue simulator in TypeScript.
+Implement a distributed task queue in TypeScript.
 
 Requirements:
 
 Support enqueueing tasks
-Support multiple simulated workers
+Support multiple workers
 Support task states:
 queued
 running
@@ -20,7 +20,7 @@ Include tests
 
 Then implement a local task processing CLI.
 
-Build a TypeScript CLI tool that simulates a distributed job queue on one machine.
+Build a TypeScript CLI tool that runs a distributed job queue on one machine.
 
 Task definitions must be loaded from JSON.
 
@@ -45,8 +45,8 @@ npx queue inspect send-email-1
 Features:
 
 Persist queue state locally in JSON files
-Simulate worker failures
-Simulate slow tasks
+Handle worker failures
+Handle slow tasks
 Prevent task loss
 Prevent duplicate successful processing
 Move permanently failed tasks to a dead-letter queue

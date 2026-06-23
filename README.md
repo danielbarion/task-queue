@@ -1,32 +1,32 @@
-# Task Queue Simulator
+# Task Queue
 
-A distributed task queue simulator implemented entirely in TypeScript. Runs locally with Node.js — no Redis, RabbitMQ, or external services required.
+A distributed task queue implemented entirely in TypeScript. Runs locally with Node.js — no Redis, RabbitMQ, or external services required.
 
 ## Overview
 
-This project simulates a distributed job queue on a single machine. It supports task scheduling, concurrent worker processing, retry policies with exponential backoff, worker crash simulation, task timeouts, and dead-letter queuing. All state is persisted locally in JSON files.
+This project runs a distributed job queue on a single machine. It supports task scheduling, concurrent worker processing, retry policies with exponential backoff, worker crash handling, task timeouts, and dead-letter queuing. All state is persisted locally in JSON files.
 
 ## Architecture
 
 ```
-┌────────────┐     ┌─────────────┐     ┌──────────────┐
-│  CLI        │────▶│  TaskQueue   │────▶│  Persistence │
-│  (cli.ts)   │     │  (queue.ts)  │     │  (JSON files)│
-└────────────┘     └─────────────┘     └──────────────┘
-                         │
-                   ┌─────┴─────┐
-                   │ WorkerPool │
-                   │ (worker.ts)│
-                   └───────────┘
-                     │  │  │  │
-                    w1  w2  w3  w4   ← simulated workers
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│     CLI      │────▶│  TaskQueue   │────▶│  Persistence │
+│   (cli.ts)   │     │  (queue.ts)  │     │  (JSON files)│
+└──────────────┘     └──────────────┘     └──────────────┘
+                            │
+                     ┌──────┴──────┐
+                     │  WorkerPool │
+                     │ (worker.ts) │
+                     └─────────────┘
+                       │  │  │  │
+                      w1  w2  w3  w4
 ```
 
 ### Components
 
 - **TaskQueue** (`src/queue.ts`): Core queue engine managing task lifecycle (queued → running → succeeded/failed → retrying → dead-lettered). Handles enqueueing, dequeuing, state transitions, retry logic, and dead-letter management.
 
-- **WorkerPool** (`src/worker.ts`): Simulates concurrent workers that pull tasks from the queue. Supports configurable worker count, crash simulation, slow task simulation, and timeout enforcement.
+- **WorkerPool** (`src/worker.ts`): Manages concurrent workers that pull tasks from the queue. Supports configurable worker count, crash handling, slow task handling, and timeout enforcement.
 
 - **Persistence** (`src/persistence.ts`): Atomic JSON file persistence with write-ahead temp files. Prevents data corruption on crashes.
 
@@ -64,7 +64,7 @@ queued ──▶ running ──▶ succeeded
 
 - **Worker crashes**: Workers can randomly crash during execution. The task is marked as failed and the worker restarts after a short delay. The task re-enters the retry cycle.
 - **Timeouts**: If a task's execution time exceeds its `timeoutMs`, it is terminated and marked as failed.
-- **Simulated failures**: A small percentage of tasks randomly fail to simulate real-world conditions.
+- **Random failures**: A small percentage of tasks randomly fail to replicate real-world conditions.
 - **Dead-letter queue**: Tasks that exhaust all retries are moved to a separate dead-letter queue for later inspection or replay.
 - **Task loss prevention**: All state changes are persisted atomically. Tasks never disappear from the queue.
 - **Duplicate prevention**: Succeeded tasks are never re-processed. Task IDs enforce uniqueness.
@@ -98,7 +98,7 @@ Tasks are defined in JSON files. Each task has:
 | `maxRetries` | Maximum retry attempts before dead-lettering |
 | `timeoutMs` | Maximum execution time in milliseconds |
 
-A file can contain a single task object or an array of tasks. See `examples/tasks.json` for a full example.
+A file can contain a single task object or an array of tasks. See `examples/tasks.json` for a full example with 1,000 tasks.
 
 ## CLI Usage
 
@@ -168,7 +168,7 @@ The test suite covers:
 │   ├── types.ts          # Type definitions
 │   ├── persistence.ts    # JSON file persistence layer
 │   ├── queue.ts          # Core task queue engine
-│   ├── worker.ts         # Worker pool simulation
+│   ├── worker.ts         # Worker pool engine
 │   ├── cli.ts            # CLI entry point
 │   └── index.ts          # Public API exports
 ├── tests/

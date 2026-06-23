@@ -1,0 +1,5 @@
+node_modules/
+dist/
+
+# Queue state data (runtime temp files)
+.queue-data/

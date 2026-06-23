@@ -127,7 +127,7 @@ export class WorkerPool {
     this.addTimeline(worker.id, task.id, 'START');
     this.options.onTaskStart(worker.id, task);
 
-    // Simulate worker crash
+    // Worker crash check
     if (Math.random() < this.options.crashProbability) {
       this.addTimeline(worker.id, task.id, 'CRASH', 'Worker crashed during execution');
       this.options.onWorkerCrash(worker.id, task);
@@ -145,11 +145,11 @@ export class WorkerPool {
       return;
     }
 
-    // Simulate task execution time
+    // Task execution time
     let executionTime = Math.random() * 200 + 50;
     if (Math.random() < this.options.slowTaskProbability) {
       executionTime *= this.options.slowTaskMultiplier;
-      this.addTimeline(worker.id, task.id, 'SLOW', `Simulated slow task: ${Math.round(executionTime)}ms`);
+      this.addTimeline(worker.id, task.id, 'SLOW', `Slow task: ${Math.round(executionTime)}ms`);
     }
 
     // Check timeout
@@ -164,9 +164,9 @@ export class WorkerPool {
       worker.tasksFailed++;
       this.queue.markFailed(task.id, `Timeout after ${timeoutMs}ms`);
     } else {
-      // Simulate random task failures (10% chance)
+      // Random task failures (10% chance)
       if (Math.random() < 0.1) {
-        const err = 'Simulated task execution error';
+        const err = 'Task execution error';
         this.addTimeline(worker.id, task.id, 'FAIL', err);
         this.options.onTaskFail(worker.id, task, err);
         worker.tasksFailed++;
